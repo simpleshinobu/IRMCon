@@ -18,11 +18,11 @@ If you find this work is useful in your research, please kindly consider citing:
   year={2022}
 }
 ```
-#####Dependencies
+####Dependencies
 
-#####Preparing
+####Preparing
 
-#####Training
+####Training
 1. Check your download data path and the set data path in the code.
 
 2.1 Training for CMNIST
@@ -33,6 +33,6 @@ If you find this work is useful in your research, please kindly consider citing:
 
 2.4 Training for PACS
 
-#####Acknowledgements
+####Acknowledgements
 
 Thanks for the source code from LfF and DomainBed.
