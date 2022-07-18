@@ -45,12 +45,13 @@ ERM baseline: python train_bar_erm.py --ratio 0.05
 Ours: python train_bar_ours.py --ratio 0.05
 
 2.Training for PACS (codebase is from DomainBed, find the full version from [here](https://github.com/facebookresearch/DomainBed))
+(The differences are in dataset (we need augmented images), dataloader, and settings (like no pretraining), we need 16G card)
 
 2.1.download data(PACS) from DomainBed and put into ./data
 
-2.2.run baseline: python train_ERM.py  --add_note pacs_erm --test_envs 0 --no_pretrain --use_res18 --epochs 100
+2.2.run baseline: python train_origin.py --test_envs 0
 
-2.3.run ours: python train_ours.py  --add_note pacs_ours --test_envs 0 --no_pretrain --use_res18 --epochs 100
+2.3.run ours: python train_ours.py --test_envs 0
 
 ##### Acknowledgements
 
