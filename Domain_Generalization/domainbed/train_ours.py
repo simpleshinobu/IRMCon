@@ -1,34 +1,23 @@
-# Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
-
 import argparse
 import collections
 import json
 import os
-# os.chdir("../../")
 import sys
 sys.path.append("../")
 import random
 import sys
-import time
-import uuid
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
-import PIL
 import torch
-import torchvision
 import torch.optim as optim
 import torch.utils.data
-import math
 from utils import GeneralizedCELoss, info_nce_loss, penalty_contra
 from domainbed import datasets
 from domainbed import hparams_registry
 from domainbed import algorithms
 from domainbed.lib import misc
 from domainbed.lib.fast_data_loader import InfiniteDataLoader, FastDataLoader
-#Note the default setting is for PACS envs1, the details of other settings are in the following.
-#Please focus on the loss of training IRMCon, lr 0.0008 is better than 0.001 at some time if 0.001 cannot decrease the contrastive loss
-
 
 def save_checkpoint(filename, model):
     save_dict = {
@@ -99,8 +88,7 @@ def set_second_image_flag(temp_set, value):
     temp_set.datasets[2].underlying_dataset.second_image = value
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Domain generalization')
-    ###ours params
-    parser.add_argument('--ERM_lr', type=float,default=0.001) #
+    parser.add_argument('--ERM_lr', type=float,default=0.001)
     parser.add_argument('--weight_decay', type=float,default=5e-5)
     parser.add_argument('--batch_size', type=int,default=128)
     parser.add_argument('--workers', type=int,default=8)
@@ -242,7 +230,6 @@ if __name__ == "__main__":
         checkpoint_vals = collections.defaultdict(lambda: [])
 
 
-        #training stage
         last_results_keys = None
         best_accs = {"best_eval1":0,"best_test1":0,"best_eval2":0,"best_test2":0,"best_iters1":0,"best_iters2":0}
         set_idx_flag(train_split_set, True)
@@ -365,7 +352,7 @@ if __name__ == "__main__":
 
         optimizer_d = torch.optim.Adam(
             model_ERM.network.parameters(),
-            lr=args.ERM_lr,  #default
+            lr=args.ERM_lr,
             weight_decay=args.weight_decay
         )
         optimizer_b = optim.Adam(model_b.parameters(), lr=args.lr_final_bias)
